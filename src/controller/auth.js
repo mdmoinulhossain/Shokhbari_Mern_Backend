@@ -35,10 +35,9 @@ exports.signup = (req, res) => {
 
 //this is for signin
 exports.signin = (req, res) => {
-  User.findOne({ emial: req.body.email }).exec((error, user) => {
+  User.findOne({ email: req.body.email }).exec((error, user) => {
     if (error) return res.status(400).json({ error });
     if (user) {
-      //this authenticate comes form modal auth/user
       if (user.authenticate(req.body.password)) {
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
           expiresIn: "1h",
@@ -56,8 +55,8 @@ exports.signin = (req, res) => {
           },
         });
       } else {
-        return res.status(400).json({
-          message: "Invalid password",
+        res.status(400).json({
+          message: "Invalid Password",
         });
       }
     } else {
