@@ -23,7 +23,7 @@ exports.validateSigninRequest = [
     .notEmpty()
     .withMessage("password is required")
     .isLength({ min: 6 })
-    .withMessage("Password must be at least 6 character long"),
+    .withMessage("Password wrong"),
   //   check("password")
   //     .isLength({ min: 6 })
   //     .withMessage("Password must be at least 6 character long"),
